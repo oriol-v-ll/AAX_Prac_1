@@ -14,7 +14,7 @@ public class ClienteUDP {
         this.puerto = puerto;
     }
     
-    public void run() {
+    public void run(String Ubicacion) {
         DatagramSocket socket = null;
         try {
             socket = new DatagramSocket();
@@ -32,6 +32,8 @@ public class ClienteUDP {
             System.err.println("Unknown Host Exception");
             System.exit(1);
         }
+        // send user ubication.
+        buf = Ubicacion.getBytes();
         DatagramPacket packet = new DatagramPacket(buf, buf.length, 
                 address, puerto);  
         try {
@@ -52,8 +54,7 @@ public class ClienteUDP {
 
         // display response
         String received = new String(packet.getData(), 0, packet.getLength());
-        System.out.println("Fecha actual: " + received);
-        
+        System.out.println("Ubicacion / edge server optimo: " + received);        
         socket.close();
     }
   

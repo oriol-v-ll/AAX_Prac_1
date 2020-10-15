@@ -14,6 +14,10 @@ public class ServerUDPInteractivo {
     }
     
     public void run() {
+        String ubicacion = "";
+        String edgeServer = "";
+        String[] ubicaciones = {"Europa, Madrid", "Europa, Berlin","America, Chicago"};
+        String[] edgeservers = {"1.1.1.1:1111","2.2.2.2:2222","3.3.3.3:333"};
         DatagramSocket socket = null;
         try {
             socket = new DatagramSocket(puerto);
@@ -27,17 +31,29 @@ public class ServerUDPInteractivo {
             
             DatagramPacket packet = new DatagramPacket(buf, buf.length);       
             try {
+            	
                 socket.receive(packet);
+                String received = new String(packet.getData(), 0, packet.getLength());
+                //select the optimus ubication of the edge server
+                if (received.equals("Europa, Barcelona")) {
+                	ubicacion = ubicaciones[0];
+                	edgeServer = edgeservers[0];
+                }
+                if (received.equals("Europa, Amsterdam")) {
+                	ubicacion = ubicaciones[1];
+                	edgeServer = edgeservers[1];
+                }
+                if (received.equals("America, LosAngeles")) {
+                	ubicacion = ubicaciones[2];
+                	edgeServer = edgeservers[2];
+                }
+                	
             } catch (IOException e) {
                 System.err.println("Error when receiving");
                 System.exit(1);
             }
             
-        
-            String[] ubicacion = {"Europa, Madrid", "Europa, Berlin","America, Chicago"};
-            String sdate = ubicacion[0];
-            String edgeserver =  "192.168.0.1:4444";
-            String informacion = sdate + edgeserver;
+            String informacion = ubicacion + "/" + edgeServer;
             
             InetAddress addressOrigen = packet.getAddress();
             int puertoOrigen = packet.getPort();
