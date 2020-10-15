@@ -14,7 +14,7 @@ public class ClienteUDP {
         this.puerto = puerto;
     }
     
-    public void run(String Ubicacion) {
+    public String run(String Ubicacion) {
         DatagramSocket socket = null;
         try {
             socket = new DatagramSocket();
@@ -54,8 +54,9 @@ public class ClienteUDP {
 
         // display response
         String received = new String(packet.getData(), 0, packet.getLength());
-        System.out.println("Ubicacion / edge server optimo: " + received);        
+        System.out.println("Edge server optimo: " + received);
         socket.close();
+        return received;
     }
   
 }

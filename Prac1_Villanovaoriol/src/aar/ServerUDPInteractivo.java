@@ -53,7 +53,7 @@ public class ServerUDPInteractivo {
                 System.exit(1);
             }
             
-            String informacion = ubicacion + "/" + edgeServer;
+            String informacion = edgeServer;
             
             InetAddress addressOrigen = packet.getAddress();
             int puertoOrigen = packet.getPort();

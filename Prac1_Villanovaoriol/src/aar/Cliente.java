@@ -23,19 +23,19 @@ public class Cliente {
     	 System.out.println("Has escogido la ubicacion: "+ubicacion+"\nHas escogido el archivo: "+archivo);
     	 teclado.close();
     	 
-    	 
-    	 
-    	//Iicialización y conexión con el HUB  
+    	//Iicialización y conexión con el HUB 
+    	String edgeserver = "";
         ClienteUDP objetoCliente= new ClienteUDP("127.0.0.1",4444);
-        objetoCliente.run(ubicacion);
+        edgeserver = objetoCliente.run(ubicacion);
         
-        //Procesar la informacion del hub
+        //Procesar la informacion del hub 
+        String ipedgeserver = edgeserver.substring(0,7); //Solo funciona para ips de un solo digito; Poible cambio
+        String puertoedgeerver = edgeserver.substring(8,12);
         
-        
-        
-        
-        //COnectarse al edge server optimo preguntando por el archivo
-        
+        //Conectarse al edge server optimo preguntando por el archivo
+        int puerto = Integer.parseInt(puertoedgeerver);
+        ClienteTCPuser objetoClienteTCP= new ClienteTCPuser(ipedgeserver,puerto,archivo);
+        objetoClienteTCP.run();
         
         
         
