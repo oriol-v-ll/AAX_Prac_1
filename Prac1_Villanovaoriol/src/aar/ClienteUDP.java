@@ -51,7 +51,6 @@ public class ClienteUDP {
             System.err.println("Error when receiving");
             System.exit(1);
         }
-
         // display response
         String received = new String(packet.getData(), 0, packet.getLength());
         System.out.println("Edge server optimo: " + received);
