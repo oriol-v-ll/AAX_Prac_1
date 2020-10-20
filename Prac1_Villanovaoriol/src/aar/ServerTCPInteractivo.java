@@ -7,6 +7,7 @@ public class ServerTCPInteractivo {
     
     private int puerto = 0;
     
+    
     public ServerTCPInteractivo(int puerto) {
         this.puerto = puerto; 
     }
