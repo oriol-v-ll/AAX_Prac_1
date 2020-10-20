@@ -24,7 +24,7 @@ public class ServerTCPThread extends Thread {
             System.exit(1);
         }
             
-        ProtocoloComunicacion protocolo = new ProtocoloComunicacion();
+        ProtocoloComunicacionEdge protocolo = new ProtocoloComunicacionEdge();
         
         String inputLine, outputLine;
         outputLine = protocolo.processInput(null);

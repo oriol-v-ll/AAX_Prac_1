@@ -42,11 +42,16 @@ public class ClienteTCPuser {
                 if (fromServer.equals("Bye."))
                     break;
 		    
+                //Enviamos el archivo que queremos descargarnos
                 fromUser = stdIn.readLine();
                 if (fromUser != null) {
                     System.out.println("Client: " + fromUser);
                     out.println(fromUser);
                 }
+                
+                //Si la respuesta es que lo tiene, lo descargamos
+                
+                //Si no, nos conectamos al origin server con la ip que nos ha proporcionado y le volvemos a preguntar.
             }
         } catch (IOException e) {
             System.err.println(e.getCause());

@@ -17,7 +17,7 @@ public class ServerUDPInteractivo {
         String ubicacion = "";
         String edgeServer = "";
         String[] ubicaciones = {"Europa, Madrid", "Europa, Berlin","America, Chicago"};
-        String[] edgeservers = {"1.1.1.1:1111","2.2.2.2:2222","3.3.3.3:333"};
+        String[] edgeservers = {"1.1.1.1:1111","2.2.2.2:2222","3.3.3.3:3333"};
         DatagramSocket socket = null;
         try {
             socket = new DatagramSocket(puerto);

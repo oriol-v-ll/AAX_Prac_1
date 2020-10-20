@@ -6,7 +6,7 @@ public class Cliente {
     public static void main(String[] args) {
     	
     	//Se pide la información necesaria al usuario
-    	Scanner teclado = new Scanner(System.in);
+    	 Scanner teclado = new Scanner(System.in);
     	 String[] archivos = {"FastAndFurius","Juego de Tronos", "Mr.Robot"};
     	 String[] ubicaciones = {"Europa, Barcelona", "Europa, Amsterdam","America, LosAngeles"};
     	 int opcionArchivo, opcionUbicacion;

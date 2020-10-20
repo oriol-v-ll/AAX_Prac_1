@@ -16,7 +16,7 @@ public class ServerTCPConcurrente {
         try {
             serverSocket = new ServerSocket(puerto);
         } catch (IOException e) {
-            System.err.println("Could not listen on port: 4444.");
+            System.err.println("Could not listen on port:" + puerto);
             System.exit(1);
         }
 
