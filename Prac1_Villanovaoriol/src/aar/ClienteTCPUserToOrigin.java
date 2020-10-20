@@ -1,25 +1,27 @@
 package aar;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
-public class ClienteTCPuser {
-    
+public class ClienteTCPUserToOrigin {
+	   
     private String IP = "";
     private int puerto = 0;
-    private String archivo = "";
     
-    public ClienteTCPuser(String IP, int puerto, String archivo) {
+    public ClienteTCPUserToOrigin(String IP, int puerto) {
         this.IP = IP;
         this.puerto = puerto;
-        this.archivo =  archivo;
     }
     
     public void run() {
         Socket socket = null;
         PrintWriter out = null;
         BufferedReader in = null;
- 
+
         try {
             socket = new Socket(IP, puerto);
             out = new PrintWriter(socket.getOutputStream(), true);
@@ -42,24 +44,11 @@ public class ClienteTCPuser {
                 if (fromServer.equals("Bye."))
                     break;
 		    
-                //Enviamos el archivo que queremos descargarnos
-                fromUser = archivo;
+                fromUser = stdIn.readLine();
                 if (fromUser != null) {
                     System.out.println("Client: " + fromUser);
                     out.println(fromUser);
                 }
-                
-                //Si la respuesta es que lo tiene, lo descargamos
-                if (fromServer.equals("SI")){
-                	
-                }else {
-                //Si no, nos conectamos al origin server con la ip que nos ha proporcionado y le volvemos a preguntar.
-                	ClienteTCPUserToOrigin objetoCliente= new ClienteTCPUserToOrigin("9.9.9.9",9999);
-                    objetoCliente.run();
-                	
-                }
-         
-            
             }
         } catch (IOException e) {
             System.err.println(e.getCause());
@@ -76,5 +65,5 @@ public class ClienteTCPuser {
             System.exit(1);
         }  
     }
-  
+
 }
