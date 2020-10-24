@@ -29,7 +29,7 @@ public class ServerTCPInteractivo {
             System.exit(1);
         }
 
-        PrintWriter out = null;
+        PrintWriter out = null;	
         BufferedReader in = null;
         try {
             out = new PrintWriter(clientSocket.getOutputStream(), true);

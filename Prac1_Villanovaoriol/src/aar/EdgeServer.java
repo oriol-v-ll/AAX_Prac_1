@@ -20,13 +20,12 @@ public class EdgeServer {
 	    	opcionPuerto = Integer.parseInt(teclado.nextLine()); 
 	    	puerto = puertos[opcionPuerto-1];
 	    	ubicacion = ubicaciones[opcionUbicacion-1];
+	    	System.out.println("Gracias, servidor iniciado correctamente. Su direcion IP es:");
 	    	
 	    	//Inicializacion servidor para atender peticiones de los clientes
 	        ServerTCPConcurrente objetoServer= new ServerTCPConcurrente(puerto);
 	        objetoServer.run();
 	        
-	        //Inicializacion del cliente de cara el contacto con el origin server
-	        ClienteTCPedge objetoCliente= new ClienteTCPedge("9.9.9.9",9999);
-	        objetoCliente.run();
+
 	    }
 }

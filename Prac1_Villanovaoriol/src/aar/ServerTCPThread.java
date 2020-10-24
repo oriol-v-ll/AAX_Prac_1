@@ -37,6 +37,7 @@ public class ServerTCPThread extends Thread {
                 out.println(outputLine);
                 if (outputLine.equals("Bye."))
                     break;
+            	
             }
         } catch (IOException e) {
             System.err.println("Read failed.");

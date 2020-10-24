@@ -32,64 +32,33 @@
 package aar;
 
 public class ProtocoloComunicacion {
-    private final int WAITING = 0;
-    private final int SENTKNOCKKNOCK = 1;
-    private final int SENTCLUE = 2;
-    private final int ANOTHER = 3;
-
-    private final int NUMJOKES = 5;
-
-    private int state = WAITING;
-    private int currentJoke = 0;
-
-    private String[] clues = { "Turnip", "Little Old Lady", "Atch", "Who", "Who" };
-    private String[] answers = { "Turnip the heat, it's cold in here!",
-                                 "I didn't know you could yodel!",
-                                 "Bless you!",
-                                 "Is there an owl in here?",
-                                 "Is there an echo in here?" };
-
+ 
     
     public ProtocoloComunicacion() {}
     
     public String processInput(String theInput) {
         String theOutput = null;
-
-        if (state == WAITING) {
-            theOutput = "Knock! Knock!";
-            state = SENTKNOCKKNOCK;
-        } else if (state == SENTKNOCKKNOCK) {
-            if (theInput.equalsIgnoreCase("Who's there?")) {
-                theOutput = clues[currentJoke];
-                state = SENTCLUE;
-            } else {
-                theOutput = "You're supposed to say \"Who's there?\"! " +
-			    "Try again. Knock! Knock!";
-            }
-        } else if (state == SENTCLUE) {
-            if (theInput.equalsIgnoreCase(clues[currentJoke] + " who?")) {
-                theOutput = answers[currentJoke] + " Want another? (y/n)";
-                state = ANOTHER;
-            } else {
-                theOutput = "You're supposed to say \"" + 
-			    clues[currentJoke] + 
-			    " who?\"" + 
-			    "! Try again. Knock! Knock!";
-                state = SENTKNOCKKNOCK;
-            }
-        } else if (state == ANOTHER) {
-            if (theInput.equalsIgnoreCase("y")) {
-                theOutput = "Knock! Knock!";
-                if (currentJoke == (NUMJOKES - 1))
-                    currentJoke = 0;
-                else
-                    currentJoke++;
-                state = SENTKNOCKKNOCK;
-            } else {
-                theOutput = "Bye.";
-                state = WAITING;
-            }
+        
+        if (theInput != null) {
+        	if (theInput.equals("FastAndFurius")) {
+        		theOutput = "SI";
+        	}else if (theInput.equals("Juego de Tronos")) {
+        		theOutput = "SI";
+        	}else if (theInput.equals("Mr.Robot")) {
+        		theOutput = "SI";
+        	}else {
+        		theOutput = "NO";
+        	}
+        	if (theInput.equals("iporiginserver")) {
+        		theOutput = "9.9.9.9:9999";
+        	}
+        	
+        }else {
+        	System.out.println("El fichero no existe...");
+        	theOutput = "Que quieres descargar?";
+        	
         }
+     
         return theOutput;
     }
      
