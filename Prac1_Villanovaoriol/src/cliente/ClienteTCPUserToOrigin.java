@@ -1,6 +1,11 @@
 package cliente;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -23,6 +28,14 @@ public class ClienteTCPUserToOrigin {
         Socket socket = null;
         PrintWriter out = null;
         BufferedReader in = null;
+        
+		DataOutputStream output;
+		 BufferedInputStream bis;
+		 BufferedOutputStream bos;
+		 
+		byte[] receivedData;
+		 int ini;
+		 String file;
 
         try {
             socket = new Socket(IP, puerto);
@@ -56,6 +69,18 @@ public class ClienteTCPUserToOrigin {
                 	System.out.println("DESCARGANDO. ");
                 	System.out.println("DESCARGANDO.. ");
                 	System.out.println("DESCARGANDO... ");
+                	
+                	fromServer = in.readLine();
+					receivedData = new byte[1024];
+					 bis = new BufferedInputStream(socket.getInputStream());
+					 DataInputStream dis=new DataInputStream(socket.getInputStream());
+					 file = "/cliente.Descargas/descarga.txt";
+					 bos = new BufferedOutputStream(new FileOutputStream(file));
+					 while ((ini = bis.read(receivedData)) != -1){
+					 bos.write(receivedData,0,ini);
+					 }
+					 bos.close();
+					 dis.close();
                 	break;
       
                 }else if (fromServer.equals("NO")) {

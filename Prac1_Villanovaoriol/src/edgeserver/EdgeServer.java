@@ -1,5 +1,7 @@
 package edgeserver;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class EdgeServer {
@@ -20,7 +22,13 @@ public class EdgeServer {
 	    	opcionPuerto = Integer.parseInt(teclado.nextLine()); 
 	    	puerto = puertos[opcionPuerto-1];
 	    	ubicacion = ubicaciones[opcionUbicacion-1];
-	    	System.out.println("Gracias, servidor iniciado correctamente. Su direcion IP es:");
+	    	InetAddress IP = null;
+			try {
+				IP = InetAddress.getLocalHost();
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			}
+			System.out.println("El EdgeServer esta alojado en:"+IP+":"+puerto);
 	    	
 	    	//Inicializacion servidor para atender peticiones de los clientes
 	        ServerTCPConcurrente objetoServer= new ServerTCPConcurrente(puerto);

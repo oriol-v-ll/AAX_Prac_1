@@ -19,7 +19,6 @@ public class ClienteTCPuser {
 		Socket socket = null;
 		PrintWriter out = null;
 		BufferedReader in = null;
-
 		try {
 			socket = new Socket(IP, puerto);
 			out = new PrintWriter(socket.getOutputStream(), true);
@@ -72,6 +71,7 @@ public class ClienteTCPuser {
 							ipOriginServer = "127.0.0.1"; //BORRAR LINEA CUANDO SE HAGA EN ORDENADORES SEPARADOS
 							ClienteTCPUserToOrigin objetoCliente = new ClienteTCPUserToOrigin(ipOriginServer,
 									puertoOriginerver, archivo);
+							
 							objetoCliente.run();
 							fromUser = "Gracias";
 							out.println(fromUser);
