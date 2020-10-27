@@ -1,4 +1,4 @@
-package aar;
+package edgeserver;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package aar;
+package hub;
 
 import java.net.InetAddress;
 import java.util.Scanner;

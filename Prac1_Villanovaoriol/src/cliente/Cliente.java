@@ -1,4 +1,4 @@
-package aar;
+package cliente;
 
 import java.util.Scanner;
 

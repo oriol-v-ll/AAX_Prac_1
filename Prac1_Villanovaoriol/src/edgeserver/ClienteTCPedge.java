@@ -1,22 +1,16 @@
-package aar;
+package edgeserver;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.io.*;
+import java.net.*;
 
-public class ClienteTCPUserToOrigin {
-	   
+public class ClienteTCPedge {
+    
     private String IP = "";
     private int puerto = 0;
-    String archivo = "";
     
-    public ClienteTCPUserToOrigin(String IP, int puerto, String archivo) {
+    public ClienteTCPedge(String IP, int puerto) {
         this.IP = IP;
         this.puerto = puerto;
-        this.archivo = archivo;
     }
     
     public void run() {
@@ -39,32 +33,18 @@ public class ClienteTCPUserToOrigin {
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         String fromServer;
         String fromUser;
-        fromUser = archivo;
-        out.println(fromUser);
 
         try {
             while ((fromServer = in.readLine()) != null) {
                 System.out.println("Server: " + fromServer);
                 if (fromServer.equals("Bye."))
                     break;
-                fromUser = archivo;
+		    
+                fromUser = stdIn.readLine();
                 if (fromUser != null) {
                     System.out.println("Client: " + fromUser);
                     out.println(fromUser);
                 }
-                if (fromServer.equals("SI")){
-                	System.out.println("DESCARGANDO. ");
-                	System.out.println("DESCARGANDO.. ");
-                	System.out.println("DESCARGANDO... ");
-                	break;
-      
-                }else if (fromServer.equals("NO")) {
-                	System.out.println("El archivo que buscas no esta disponible :(");
-                    break;
-                	
-                }
-         
-            
             }
         } catch (IOException e) {
             System.err.println(e.getCause());
@@ -81,5 +61,5 @@ public class ClienteTCPUserToOrigin {
             System.exit(1);
         }  
     }
-
+  
 }
