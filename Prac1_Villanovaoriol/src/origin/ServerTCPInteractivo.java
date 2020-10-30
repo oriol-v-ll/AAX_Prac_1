@@ -59,21 +59,31 @@ public class ServerTCPInteractivo {
 				System.out.println("Recibo de cliente: " + inputLine);
 				outputLine = protocolo.processInput(inputLine);
 				out.println(outputLine);
-				if (outputLine.equals("Bye.")) {
+				if (outputLine.equals("SI")) {
 					if (inputLine.equals("FastAndFurius")) {
-						filename = "Fast and furius.txt";
-						final File localFile = new File(filename);
-						bis = new BufferedInputStream(new FileInputStream(localFile));
-						bos = new BufferedOutputStream(clientSocket.getOutputStream());
-						DataOutputStream dos = new DataOutputStream(clientSocket.getOutputStream());
-						dos.writeUTF(localFile.getName());
-						byteArray = new byte[8192];
-						while ((ini = bis.read(byteArray)) != -1) {
-							bos.write(byteArray, 0, ini);
-						}
+						filename = "Origin/Fastandfurius.txt";
+						 File localFile = new File(filename);
+						inputLine = in.readLine();
+						//if (inputLine.equals("Tamaño?")) 
+							out.println(localFile.length());
 
+						
+						FileInputStream fis = null;
+						fis = new FileInputStream(filename);
+						bis = new BufferedInputStream(fis);
+						bos = new BufferedOutputStream(clientSocket.getOutputStream());
+						//DataOutputStream dos = new DataOutputStream(clientSocket.getOutputStream());
+						//OutputStream dos = clientSocket.getOutputStream();
+						//dos.writeUTF(localFile.getName());
+						byteArray = new byte[(int) localFile.length()];
+						ini = bis.read(byteArray, 0, (int) localFile.length());
+						bos.write(byteArray, 0, ini);
+						bos.flush();
 						bis.close();
 						bos.close();
+						out.close();
+						in.close();
+						break;
 					}
 				}
 				if (outputLine.equals("Bye."))

@@ -23,7 +23,7 @@ public class ProtocoloComunicacion {
         		theOutput = "NO";
         	}
         	if (theInput.equals("iporiginserver")) {
-        		theOutput = "9.9.9.9:9999";
+        		theOutput = "9.9.9.9:9999"; //Aquí no haría falta 
         	}
   
         	

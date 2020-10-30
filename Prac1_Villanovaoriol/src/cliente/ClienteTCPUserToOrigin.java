@@ -60,27 +60,36 @@ public class ClienteTCPUserToOrigin {
                 System.out.println("Server: " + fromServer);
                 if (fromServer.equals("Bye."))
                     break;
-                fromUser = archivo;
                 if (fromUser != null) {
                     System.out.println("Client: " + fromUser);
                     out.println(fromUser);
+                    
                 }
                 if (fromServer.equals("SI")){
+                	out.println("Tamaño?");
+                	System.out.println("Client: " + "Tamaño?");
+                	String L = in.readLine();
+                	int longitud = Integer.parseInt(L);
+                	System.out.println("Server: " + longitud);
+
                 	System.out.println("DESCARGANDO. ");
                 	System.out.println("DESCARGANDO.. ");
                 	System.out.println("DESCARGANDO... ");
                 	
-                	fromServer = in.readLine();
-					receivedData = new byte[1024];
+                	//fromServer = in.readLine();
+					receivedData = new byte[longitud]; 
 					 bis = new BufferedInputStream(socket.getInputStream());
 					 DataInputStream dis=new DataInputStream(socket.getInputStream());
-					 file = "/cliente.Descargas/descarga.txt";
+					 file = "Descargas/descarga.txt";
 					 bos = new BufferedOutputStream(new FileOutputStream(file));
-					 while ((ini = bis.read(receivedData)) != -1){
+					 ini = bis.read(receivedData);
 					 bos.write(receivedData,0,ini);
-					 }
+					 
 					 bos.close();
 					 dis.close();
+					 bos.flush();
+	                 out.close();      
+	                 in.close();
                 	break;
       
                 }else if (fromServer.equals("NO")) {

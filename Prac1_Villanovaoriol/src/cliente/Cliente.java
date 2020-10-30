@@ -1,7 +1,16 @@
+/**
+ * CLIENTE 
+ * @author Oriol Villanova Llorens -> oriol.villanova@estudiants.urv.cat
+ */
 package cliente;
 
 import java.util.Scanner;
-
+/**
+ * Clase cliente, incia una ubicacion de un cliente a escoger y le da a elegir el archivo que quiere descargar. 
+ * 
+ * @author oriol
+ *
+ */
 public class Cliente {
     public static void main(String[] args) {
     	
