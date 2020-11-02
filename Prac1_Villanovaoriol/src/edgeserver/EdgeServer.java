@@ -1,9 +1,20 @@
+/**
+ * EDGE SERVER
+ * 
+ * @author Oriol Villanova Llorens -> oriol.villanova@estudiants.urv.cat
+ * 
+ */
 package edgeserver;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+/**
+ * Main del edgeserver que hace la conexión con el cliente y con el Origin si le hace falta el archivo.
+ * @author oriol
+ *
+ */
 public class EdgeServer {
 	    public static void main(String[] args) {
 	    	//Preguntar que servidor y en que localizacion queremos iniciarlo:

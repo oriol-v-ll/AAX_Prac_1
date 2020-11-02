@@ -1,3 +1,10 @@
+/**
+ * 
+ * SERVER TCP INTERACTIVO ORIGIN 
+ * 
+ * @author Oriol Villanova Llorens -> oriol.villanova@estudiants.urv.cat 
+ * 
+ */
 package origin;
 
 import java.net.*;
@@ -13,13 +20,10 @@ public class ServerTCPInteractivo {
 
 	public void run() {
 		ServerSocket serverSocket = null;
-
-		DataInputStream input;
 		BufferedInputStream bis;
 		BufferedOutputStream bos;
 		int ini;
 		byte[] byteArray;
-		// Fichero a transferir
 		String filename = "";
 
 		try {
@@ -60,21 +64,54 @@ public class ServerTCPInteractivo {
 				outputLine = protocolo.processInput(inputLine);
 				out.println(outputLine);
 				if (outputLine.equals("SI")) {
+					// Implementación de sistema de descargas.
 					if (inputLine.equals("FastAndFurius")) {
 						filename = "Origin/Fastandfurius.txt";
-						 File localFile = new File(filename);
+						File localFile = new File(filename);
 						inputLine = in.readLine();
-						//if (inputLine.equals("Tamaño?")) 
-							out.println(localFile.length());
-
-						
+						out.println(localFile.length());
 						FileInputStream fis = null;
 						fis = new FileInputStream(filename);
 						bis = new BufferedInputStream(fis);
 						bos = new BufferedOutputStream(clientSocket.getOutputStream());
-						//DataOutputStream dos = new DataOutputStream(clientSocket.getOutputStream());
-						//OutputStream dos = clientSocket.getOutputStream();
-						//dos.writeUTF(localFile.getName());
+						byteArray = new byte[(int) localFile.length()];
+						ini = bis.read(byteArray, 0, (int) localFile.length());
+						bos.write(byteArray, 0, ini);
+						bos.flush();
+						bis.close();
+						bos.close();
+						out.close();
+						in.close();
+						break;
+					}
+					if (inputLine.equals("Juego de Tronos")) {
+						filename = "Origin/Juego de tronos.txt";
+						File localFile = new File(filename);
+						inputLine = in.readLine();
+						out.println(localFile.length());
+						FileInputStream fis = null;
+						fis = new FileInputStream(filename);
+						bis = new BufferedInputStream(fis);
+						bos = new BufferedOutputStream(clientSocket.getOutputStream());
+						byteArray = new byte[(int) localFile.length()];
+						ini = bis.read(byteArray, 0, (int) localFile.length());
+						bos.write(byteArray, 0, ini);
+						bos.flush();
+						bis.close();
+						bos.close();
+						out.close();
+						in.close();
+						break;
+					}
+					if (inputLine.equals("Mr.Robot")) {
+						filename = "Origin/Mr.Robot.txt";
+						File localFile = new File(filename);
+						inputLine = in.readLine();
+						out.println(localFile.length());
+						FileInputStream fis = null;
+						fis = new FileInputStream(filename);
+						bis = new BufferedInputStream(fis);
+						bos = new BufferedOutputStream(clientSocket.getOutputStream());
 						byteArray = new byte[(int) localFile.length()];
 						ini = bis.read(byteArray, 0, (int) localFile.length());
 						bos.write(byteArray, 0, ini);

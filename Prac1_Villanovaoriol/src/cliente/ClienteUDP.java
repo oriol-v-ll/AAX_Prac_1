@@ -1,3 +1,8 @@
+/**
+ * ClienteUDP
+ * 
+ *  @author Oriol Villanova LLorens -> oriol.villanova@estudiants.urv.cat
+ */
 package cliente;
 
 import java.io.*;
@@ -8,12 +13,21 @@ public class ClienteUDP {
     
     private String IP = "";
     private int puerto = 0;
-    
+    /**
+     * Constructor con los parámetros de construcción.
+     * @param IP
+     * @param puerto
+     */
     public ClienteUDP(String IP, int puerto) {
         this.IP = IP;
         this.puerto = puerto;
     }
     
+    /**
+     * 
+     * @param Ubicacion
+     * @return IP del edgeserver optimo. 
+     */
     public String run(String Ubicacion) {
         DatagramSocket socket = null;
         try {

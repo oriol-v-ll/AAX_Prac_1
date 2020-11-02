@@ -1,3 +1,8 @@
+/**
+ * ClienteTCPuser
+ * 
+ * @author Oriol Villanova LLorens -> oriol.villanova@estudiants.urv.cat
+ */
 package cliente;
 
 import java.io.*;
@@ -9,16 +14,34 @@ public class ClienteTCPuser {
 	private int puerto = 0;
 	private String archivo = "";
 
+	/**
+	 * Constructor de la classe para incicar una conexion de cliente con la IP, el
+	 * puerto y el archivo que se quiere descargar.
+	 * 
+	 * @param IP
+	 * @param puerto
+	 * @param archivo
+	 */
 	public ClienteTCPuser(String IP, int puerto, String archivo) {
 		this.IP = IP;
 		this.puerto = puerto;
 		this.archivo = archivo;
 	}
 
+	/**
+	 * run, crea una conexión mediante sockets con el edgeserver.
+	 * 
+	 * @return SI si se ha completado; No si no se ha completado
+	 */
 	public String run() {
 		Socket socket = null;
 		PrintWriter out = null;
 		BufferedReader in = null;
+		BufferedInputStream bis;
+		BufferedOutputStream bos;
+		byte[] receivedData;
+		int ini;
+		String file;
 		try {
 			socket = new Socket(IP, puerto);
 			out = new PrintWriter(socket.getOutputStream(), true);
@@ -49,11 +72,30 @@ public class ClienteTCPuser {
 					}
 				}
 				if (fromServer.equals("SI")) {
+					out.println("Tamaño?");
+					System.out.println("Client: " + "Tamaño?");
+					String L = in.readLine();
+					int longitud = Integer.parseInt(L);
+					System.out.println("Server: " + longitud);
+
 					System.out.println("DESCARGANDO. ");
 					System.out.println("DESCARGANDO.. ");
 					System.out.println("DESCARGANDO... ");
-					fromUser = "Gracias";
-					out.println(fromUser);
+
+					// fromServer = in.readLine();
+					receivedData = new byte[longitud];
+					bis = new BufferedInputStream(socket.getInputStream());
+					DataInputStream dis = new DataInputStream(socket.getInputStream());
+					file = "Descargas/descarga.txt";
+					bos = new BufferedOutputStream(new FileOutputStream(file));
+					ini = bis.read(receivedData);
+					bos.write(receivedData, 0, ini);
+
+					bos.close();
+					dis.close();
+					bos.flush();
+					out.close();
+					in.close();
 					break;
 
 				} else if (fromServer.equals("NO")) {
@@ -68,10 +110,10 @@ public class ClienteTCPuser {
 						if ((fromServer = in.readLine()) != null) {
 							System.out.println("Server: " + fromServer);
 							int puertoOriginerver = Integer.parseInt(fromServer);
-							ipOriginServer = "127.0.0.1"; //BORRAR LINEA CUANDO SE HAGA EN ORDENADORES SEPARADOS
+							ipOriginServer = "127.0.0.1"; // BORRAR LINEA CUANDO SE HAGA EN ORDENADORES SEPARADOS
 							ClienteTCPUserToOrigin objetoCliente = new ClienteTCPUserToOrigin(ipOriginServer,
 									puertoOriginerver, archivo);
-							
+
 							objetoCliente.run();
 							fromUser = "Gracias";
 							out.println(fromUser);

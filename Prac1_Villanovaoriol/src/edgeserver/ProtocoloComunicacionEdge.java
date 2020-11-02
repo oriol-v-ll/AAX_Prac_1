@@ -1,8 +1,18 @@
-
+/**
+ * PROTOCOLO DE COMUNICACION EDGE SERVER 
+ * 
+ * @author Oriol Villanova Llorens -> oriol.villanova@estudiants.urv.cat
+ * 
+ */
 package edgeserver;
-import java.io.*;
 
 
+/**
+ * Clase que dependiendo de que contesta el cliente, el edgeserver contesta la respues óptima.
+ * 
+ * @author oriol
+ *
+ */
 public class ProtocoloComunicacionEdge {
 	
 	public static String ficheros[]; 
@@ -10,12 +20,6 @@ public class ProtocoloComunicacionEdge {
     
     public String processInput(String theInput) {
         String theOutput = null;
-        File archivo = null;
-        FileReader fr = null;
-        BufferedReader br = null;
-        //Abrimos el fichero que pide el usuario.
-       
-        
        
         if (theInput != null) {
         	if (theInput.equals("FastAndFurius")) {
@@ -42,26 +46,7 @@ public class ProtocoloComunicacionEdge {
         	theOutput = "Que quieres descargar?";
         	
         }
-        /*
-        try {
-           archivo = new File ("FicherosEdge/Fast and furius.txt");
-           fr = new FileReader (archivo);
-           br = new BufferedReader(fr);
-           String linea;
-           while((linea=br.readLine())!=null)
-              System.out.println(linea);
-        }
-        catch(Exception e){
-           e.printStackTrace();
-        }finally{
-           try{                    
-              if( null != fr ){   
-                 fr.close();     
-              }                  
-           }catch (Exception e2){ 
-              e2.printStackTrace();
-           }
-        }*/
+
         return theOutput;
     }
      
