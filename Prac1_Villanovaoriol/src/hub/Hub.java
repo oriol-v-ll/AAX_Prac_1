@@ -1,9 +1,18 @@
+/**
+ * HUB 
+ * @author Oriol Villanova Llorens -> oriol.villanova@estudiants.urv.cat
+ */
 package hub;
 
 import java.net.InetAddress;
 import java.util.Scanner;
 import java.net.UnknownHostException;
-
+/**
+ * En esta clase se implementa el main para que el hub proporciona a cada cliente la IP de su edgeserver Optimo
+ * 
+ * @author oriol
+ *
+ */
 public class Hub {
 	
 	   public static void main(String[] args) {

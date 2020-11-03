@@ -110,7 +110,6 @@ public class ClienteTCPuser {
 						if ((fromServer = in.readLine()) != null) {
 							System.out.println("Server: " + fromServer);
 							int puertoOriginerver = Integer.parseInt(fromServer);
-							ipOriginServer = "127.0.0.1"; // BORRAR LINEA CUANDO SE HAGA EN ORDENADORES SEPARADOS
 							ClienteTCPUserToOrigin objetoCliente = new ClienteTCPUserToOrigin(ipOriginServer,
 									puertoOriginerver, archivo);
 
