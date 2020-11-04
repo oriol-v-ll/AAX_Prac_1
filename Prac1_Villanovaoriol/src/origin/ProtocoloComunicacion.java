@@ -1,4 +1,6 @@
-
+/**
+ * Protocolo de comunicacion del origin server
+ */
 
 package origin;
 
@@ -8,31 +10,25 @@ public class ProtocoloComunicacion {
  
     
     public ProtocoloComunicacion() {}
-    
+    /**
+     * Este metodo verifica la información del usuario y devuelve una respuesta acorde con lo que espera el usuario. 
+     * 
+     * @param theInput
+     * @return theOutput
+     */
     public String processInput(String theInput) {
         String theOutput = null;
         
         if (theInput != null) {
-        	if (theInput.equals("FastAndFurius")) {
-        		theOutput = "SI";
-        	}else if (theInput.equals("Juego de Tronos")) {
-        		theOutput = "SI";
-        	}else if (theInput.equals("Mr.Robot")) {
-        		theOutput = "SI";
-        	}else {
-        		theOutput = "NO";
-        	}
-        	if (theInput.equals("iporiginserver")) {
-        		theOutput = "9.9.9.9:9999"; //Aquí no haría falta 
-        	}
-  
-        	
+			File archivo = new File("Origin/" + theInput + ".txt");
+			if (!archivo.exists()) {
+				theOutput = "NO";
+			} else {
+				theOutput = "SI";
+			}
         }else {
-        	System.out.println("El fichero no existe...");
         	theOutput = "Que quieres descargar?";
-        	
         }
-     
         return theOutput;
     }
     

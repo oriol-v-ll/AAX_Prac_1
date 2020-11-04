@@ -21,6 +21,7 @@ public class Cliente {
     	 String[] ubicaciones = {"Europa, Barcelona", "Europa, Amsterdam","America, LosAngeles"};
     	 int opcionArchivo, opcionUbicacion;
     	 String archivo, ubicacion;
+    	 //Cambio para que el cliente pueda escribir el archivo que quiere descargar.
     	 System.out.println("Elige que archivo quieres descargar:\n");
     	 for (int i=0;i<3;i++)
     		 System.out.println((i+1)+".-"+archivos[i]+"\n");

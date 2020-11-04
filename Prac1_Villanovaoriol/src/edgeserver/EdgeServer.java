@@ -19,7 +19,7 @@ public class EdgeServer {
 	    public static void main(String[] args) {
 	    	//Preguntar que servidor y en que localizacion queremos iniciarlo:
 	    	Scanner teclado = new Scanner(System.in);
-	    	int opcionUbicacion, puerto, opcionPuerto;
+	    	int opcionUbicacion, puerto;
 	    	String ubicacion;
 	    	String[] ubicaciones = {"Europa, Madrid", "Europa, Berlin","America, Chicago"};
 	    	int[] puertos = {1111,2222,3333};
@@ -27,23 +27,22 @@ public class EdgeServer {
 	    	for (int i=0;i<3;i++)
 	    		System.out.println((i+1)+".-"+ubicaciones[i]+"\n");
 	    	opcionUbicacion = Integer.parseInt(teclado.nextLine()); 
-	    	System.out.println("En que puerto quieres iniciar el servidor?");
-	    	for (int j=0;j<3;j++)
-	    		System.out.println((j+1)+".-"+puertos[j]+"\n");
-	    	opcionPuerto = Integer.parseInt(teclado.nextLine()); 
-	    	puerto = puertos[opcionPuerto-1];
+	    	puerto = puertos[opcionUbicacion-1];
 	    	ubicacion = ubicaciones[opcionUbicacion-1];
+	    	System.out.println("¿Cúal es la IP del origin server?");
+	    	String iporigin = teclado.nextLine();
+	    	System.out.println("¿Cúal es el puerto del origin server?");
+	    	int puertoorigin = Integer.parseInt(teclado.nextLine()); 
 	    	InetAddress IP = null;
 			try {
 				IP = InetAddress.getLocalHost();
 			} catch (UnknownHostException e) {
 				e.printStackTrace();
 			}
-			System.out.println("El EdgeServer esta alojado en:"+IP+":"+puerto);
-	    	
-	    	//Inicializacion servidor para atender peticiones de los clientes
+			System.out.println("El EdgeServer esta alojado en:"+IP+":"+puerto+"Y localizado en:"+ubicacion);
 	        ServerTCPConcurrente objetoServer= new ServerTCPConcurrente(puerto);
-	        objetoServer.run();
+	        objetoServer.run(iporigin,puertoorigin);
+	        teclado.close();
 	        
 
 	    }

@@ -71,7 +71,7 @@ public class ClienteTCPedge {
 					receivedData = new byte[longitud];
 					bis = new BufferedInputStream(socket.getInputStream());
 					DataInputStream dis = new DataInputStream(socket.getInputStream());
-					file = "Descargas/descarga.txt";
+					file = "EdgeServer/"+archivo+".txt";
 					bos = new BufferedOutputStream(new FileOutputStream(file));
 					ini = bis.read(receivedData);
 					bos.write(receivedData, 0, ini);

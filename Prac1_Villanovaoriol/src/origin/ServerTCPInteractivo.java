@@ -82,7 +82,7 @@ public class ServerTCPInteractivo {
 						bos.close();
 						out.close();
 						in.close();
-						break;
+						//break;
 					}
 					if (inputLine.equals("Juego de Tronos")) {
 						filename = "Origin/Juego de tronos.txt";
@@ -101,7 +101,7 @@ public class ServerTCPInteractivo {
 						bos.close();
 						out.close();
 						in.close();
-						break;
+						//break;
 					}
 					if (inputLine.equals("Mr.Robot")) {
 						filename = "Origin/Mr.Robot.txt";
@@ -120,7 +120,7 @@ public class ServerTCPInteractivo {
 						bos.close();
 						out.close();
 						in.close();
-						break;
+						//break;
 					}
 				}
 				if (outputLine.equals("Bye."))

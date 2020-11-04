@@ -18,7 +18,7 @@ public class Hub {
 	   public static void main(String[] args) {
 	    	Scanner teclado = new Scanner(System.in);
 	    	int puerto;
-	    	System.out.println("Por cual puerto quieres iniciar el HUB?");
+	    	System.out.println("Por cual puerto quieres iniciar el HUB?"+"\n");
 	    	puerto = Integer.parseInt(teclado.nextLine());
 	    	InetAddress IP = null;
 			try {
@@ -26,6 +26,11 @@ public class Hub {
 			} catch (UnknownHostException e) {
 				e.printStackTrace();
 			}
+	    	System.out.println("¿Cúal es la IP del origin server?"+"\n");
+	    	String iporigin = teclado.nextLine();
+	    	System.out.println("¿Cúal es el puerto del origin server?"+"\n");
+	    	int puertoorigin = Integer.parseInt(teclado.nextLine()); 
+	    	System.out.println("IP Origin Server:"+iporigin+":"+puertoorigin+"\n");
 	    	System.out.println("El HUB esta alojado en:"+IP+":"+puerto);
 	        ServerUDPInteractivo objetoServer= new ServerUDPInteractivo(4444);
 	        objetoServer.run();

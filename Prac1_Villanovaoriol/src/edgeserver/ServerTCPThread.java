@@ -4,53 +4,61 @@
 package edgeserver;
 
 import java.net.*;
+
+import cliente.ClienteTCPuser;
+
 import java.io.*;
 
 public class ServerTCPThread extends Thread {
-    private Socket socket = null;
+	private Socket socket = null;
+	private String iporigin = "";
+	private int puertoorigin = 0;
 
-    public ServerTCPThread(Socket socket) {
-	this.socket = socket;
-    }
-    /**
-     * Metodo run que invocado con el start() crea un servidor concurrente para dar varias eticiones.
-     */
-    @Override
-    public void run() {
-        PrintWriter out = null;
-        BufferedReader in = null;
-		//DataInputStream input;
+	public ServerTCPThread(Socket socket, String iporigin, int puertoorigin) {
+		this.socket = socket;
+		this.iporigin = iporigin;
+		this.puertoorigin = puertoorigin;
+	}
+
+	/**
+	 * Metodo run que invocado con el start() crea un servidor concurrente para dar
+	 * varias eticiones.
+	 */
+	@Override
+	public void run() {
+		PrintWriter out = null;
+		BufferedReader in = null;
+		// DataInputStream input;
 		BufferedInputStream bis;
 		BufferedOutputStream bos;
+
 		int ini;
 		byte[] byteArray;
 		String filename = "";
-        try {
-            out = new PrintWriter(socket.getOutputStream(), true);
-            in = new BufferedReader(
-				new InputStreamReader(
-				socket.getInputStream()));
-        } catch (IOException e) {
-            System.err.println("Create streams failed.");
-            System.exit(1);
-        }
-            
-        ProtocoloComunicacionEdge protocolo = new ProtocoloComunicacionEdge();
-        
-        String inputLine, outputLine;
-        outputLine = protocolo.processInput(null);
-        out.println(outputLine);
+		try {
+			out = new PrintWriter(socket.getOutputStream(), true);
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		} catch (IOException e) {
+			System.err.println("Create streams failed.");
+			System.exit(1);
+		}
 
-        try {
-            while ((inputLine = in.readLine()) != null) {
-                System.out.println("Recibo de cliente: "+inputLine);
-                outputLine = protocolo.processInput(inputLine);
-                out.println(outputLine);
-                if (outputLine.equals("SI")) {
-					//Implementación de sistema de descargas. 
+		ProtocoloComunicacionEdge protocolo = new ProtocoloComunicacionEdge();
+
+		String inputLine, outputLine;
+		outputLine = protocolo.processInput(null);
+		out.println(outputLine);
+
+		try {
+			while ((inputLine = in.readLine()) != null) {
+				System.out.println("Recibo de cliente: " + inputLine);
+				outputLine = protocolo.processInput(inputLine);
+				out.println(outputLine);
+				if (outputLine.equals("SI")) {
+					// Implementación de sistema de descargas.
 					if (inputLine.equals("FastAndFurius")) {
 						filename = "EdgeServer/Fastandfurius.txt";
-						 File localFile = new File(filename);
+						File localFile = new File(filename);
 						inputLine = in.readLine();
 						out.println(localFile.length());
 						FileInputStream fis = null;
@@ -69,7 +77,7 @@ public class ServerTCPThread extends Thread {
 					}
 					if (inputLine.equals("Juego de Tronos")) {
 						filename = "EdgeServer/Juego de tronos.txt";
-						 File localFile = new File(filename);
+						File localFile = new File(filename);
 						inputLine = in.readLine();
 						out.println(localFile.length());
 						FileInputStream fis = null;
@@ -88,7 +96,7 @@ public class ServerTCPThread extends Thread {
 					}
 					if (inputLine.equals("Mr.Robot")) {
 						filename = "EdgeServer/Mr.Robot.txt";
-						 File localFile = new File(filename);
+						File localFile = new File(filename);
 						inputLine = in.readLine();
 						out.println(localFile.length());
 						FileInputStream fis = null;
@@ -106,29 +114,27 @@ public class ServerTCPThread extends Thread {
 						break;
 					}
 				}
-                //Si no tiene el archivo, el edge server procede a pedirselo al origin. 
-                if (outputLine.equals("NO")) {
-                	
-                	
-                }
-                if (outputLine.equals("Bye."))
-                    break;
-            	
-            }
-        } catch (IOException e) {
-            System.err.println("Read failed.");
-            System.exit(1);
-        }
-             
-        try {
-            out.close();
-            in.close();
-            socket.close();
-        } catch (IOException e) {
-            System.err.println("Close failed.");
-            System.exit(1);
-        }   
-    }
+				if (outputLine.equals("NO")) {
+					ClienteTCPedge objetoClienteTCP = new ClienteTCPedge(iporigin, puertoorigin, inputLine);
+					objetoClienteTCP.run();
+
+				}
+				if (outputLine.equals("Bye."))
+					break;
+
+			}
+		} catch (IOException e) {
+			System.err.println("Read failed.");
+			System.exit(1);
+		}
+
+		try {
+			out.close();
+			in.close();
+			socket.close();
+		} catch (IOException e) {
+			System.err.println("Close failed.");
+			System.exit(1);
+		}
+	}
 }
-
-

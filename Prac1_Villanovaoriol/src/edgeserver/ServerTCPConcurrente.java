@@ -16,7 +16,7 @@ public class ServerTCPConcurrente {
     }
     
     @SuppressWarnings("resource")
-	public void run() {
+	public void run(String iporigin, int puertoorigin) {
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(puerto);
@@ -27,7 +27,7 @@ public class ServerTCPConcurrente {
 
         while (true) {       
             try { 
-                new ServerTCPThread(serverSocket.accept()).start();
+                new ServerTCPThread(serverSocket.accept(),iporigin,puertoorigin).start();
             } catch (IOException e) {
                 System.err.println("Accept failed");
             }
