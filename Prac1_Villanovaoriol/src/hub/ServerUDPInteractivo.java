@@ -1,9 +1,13 @@
+/**
+ * Server IDP Interactivo para el Hub 
+ * 
+ * @author Oriol Villanova Llorens -> oriol.villanova@estudiants.urv.cat
+ * 
+ */
 package hub;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
-
 
 public class ServerUDPInteractivo {
     
@@ -12,7 +16,11 @@ public class ServerUDPInteractivo {
     public ServerUDPInteractivo(int puerto) {
         this.puerto = puerto; 
     }
-    
+    /**
+     * Ejecuta un hilo que recibe peticiones UDP. 
+     * 
+     * @author Oriol Villanova Llorens
+     */
     public void run() {
         String ubicacion = "";
         String edgeServer = "";
@@ -67,7 +75,7 @@ public class ServerUDPInteractivo {
                 System.err.println("Error when sending");
                 System.exit(1);
             }
-            System.out.println("Peticion servida numero: "+i);
+            System.out.println("Peticion servida numero: "+i + "  Tu ubicacion es: " +ubicacion);
         }
         socket.close();
     }

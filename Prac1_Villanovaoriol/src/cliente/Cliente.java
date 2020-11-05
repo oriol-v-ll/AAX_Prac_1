@@ -45,7 +45,8 @@ public class Cliente {
         //Conectarse al edge server optimo preguntando por el archivo
         int puerto = Integer.parseInt(puertoedgeerver);
         //ClienteTCPuser objetoClienteTCP= new ClienteTCPuser(ipedgeserver,puerto,archivo);
-        String conexionOrigin = null;
+        @SuppressWarnings("unused")
+		String conexionOrigin = null;
         ClienteTCPuser objetoClienteTCP= new ClienteTCPuser("127.0.0.1",puerto,archivo);
         conexionOrigin = objetoClienteTCP.run();
       
