@@ -8,7 +8,7 @@ import java.util.*;
 public class ServerUDPInteractivo {
     
     private int puerto = 0;
-    
+    static final int ITERACIONES_HUB = 100;
     public ServerUDPInteractivo(int puerto) {
         this.puerto = puerto; 
     }
@@ -26,7 +26,7 @@ public class ServerUDPInteractivo {
             System.exit(1);
         }
         
-        for(int i=0; i<5; i++) {
+        for(int i=0; i<ITERACIONES_HUB; i++) {
             byte[] buf = new byte[256];  
             
             DatagramPacket packet = new DatagramPacket(buf, buf.length);       

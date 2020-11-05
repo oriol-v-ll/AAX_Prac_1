@@ -30,8 +30,5 @@ public class ProtocoloComunicacion {
         	theOutput = "Que quieres descargar?";
         }
         return theOutput;
-    }
-    
-
-     
+    }    
 }

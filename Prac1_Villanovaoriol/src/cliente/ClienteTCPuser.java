@@ -114,8 +114,7 @@ public class ClienteTCPuser {
 									puertoOriginerver, archivo);
 
 							objetoCliente.run();
-							fromUser = "Gracias";
-							out.println(fromUser);
+							break;
 
 						}
 					}

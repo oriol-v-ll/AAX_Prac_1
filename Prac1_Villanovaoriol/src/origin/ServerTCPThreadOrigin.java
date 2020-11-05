@@ -1,20 +1,20 @@
 /**
+ * 
+ * ServerTCPThreadOrigin
  * @author Oriol Villanova Llorens -> oriol.villanova@estudiants.urv.cat 
  */
-package edgeserver;
+package origin;
 
 import java.net.*;
+
 import java.io.*;
 
-public class ServerTCPThread extends Thread {
+public class ServerTCPThreadOrigin extends Thread {
 	private Socket socket = null;
-	private String iporigin = "";
-	private int puertoorigin = 0;
 
-	public ServerTCPThread(Socket socket, String iporigin, int puertoorigin) {
+	public ServerTCPThreadOrigin(Socket socket) {
 		this.socket = socket;
-		this.iporigin = iporigin;
-		this.puertoorigin = puertoorigin;
+
 	}
 
 	/**
@@ -25,7 +25,6 @@ public class ServerTCPThread extends Thread {
 	public void run() {
 		PrintWriter out = null;
 		BufferedReader in = null;
-		// DataInputStream input;
 		BufferedInputStream bis;
 		BufferedOutputStream bos;
 
@@ -40,7 +39,7 @@ public class ServerTCPThread extends Thread {
 			System.exit(1);
 		}
 
-		ProtocoloComunicacionEdge protocolo = new ProtocoloComunicacionEdge();
+		ProtocoloComunicacion protocolo = new ProtocoloComunicacion();
 
 		String inputLine, outputLine;
 		outputLine = protocolo.processInput(null);
@@ -52,9 +51,8 @@ public class ServerTCPThread extends Thread {
 				outputLine = protocolo.processInput(inputLine);
 				out.println(outputLine);
 				if (outputLine.equals("SI")) {
-					// Implementación de sistema de descargas.
 					if (inputLine.equals("FastAndFurius")) {
-						filename = "EdgeServer/Fastandfurius.txt";
+						filename = "Origin/Fastandfurius.txt";
 						File localFile = new File(filename);
 						inputLine = in.readLine();
 						out.println(localFile.length());
@@ -73,7 +71,7 @@ public class ServerTCPThread extends Thread {
 						break;
 					}
 					if (inputLine.equals("Juego de Tronos")) {
-						filename = "EdgeServer/Juego de tronos.txt";
+						filename = "Origin/Juego de tronos.txt";
 						File localFile = new File(filename);
 						inputLine = in.readLine();
 						out.println(localFile.length());
@@ -92,7 +90,7 @@ public class ServerTCPThread extends Thread {
 						break;
 					}
 					if (inputLine.equals("Mr.Robot")) {
-						filename = "EdgeServer/Mr.Robot.txt";
+						filename = "Origin/Mr.Robot.txt";
 						File localFile = new File(filename);
 						inputLine = in.readLine();
 						out.println(localFile.length());
@@ -112,8 +110,7 @@ public class ServerTCPThread extends Thread {
 					}
 				}
 				if (outputLine.equals("NO")) {
-					ClienteTCPedge objetoClienteTCP = new ClienteTCPedge(iporigin, puertoorigin, inputLine);
-					objetoClienteTCP.run();
+
 
 				}
 				if (outputLine.equals("Bye."))
@@ -134,4 +131,5 @@ public class ServerTCPThread extends Thread {
 			System.exit(1);
 		}
 	}
+	
 }

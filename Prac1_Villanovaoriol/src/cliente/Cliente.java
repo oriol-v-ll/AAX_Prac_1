@@ -39,7 +39,7 @@ public class Cliente {
         ClienteUDP objetoCliente= new ClienteUDP("127.0.0.1",4444);
         edgeserver = objetoCliente.run(ubicacion);
         //Procesar la informacion del hub 
-        String ipedgeserver = edgeserver.substring(0,7); //Solo funciona para ips de un solo digito; Poible cambio
+        //String ipedgeserver = edgeserver.substring(0,7); //Solo funciona para ips de un solo digito; Poible cambio
         String puertoedgeerver = edgeserver.substring(8,12);
         
         //Conectarse al edge server optimo preguntando por el archivo

@@ -17,7 +17,7 @@ public class OriginServer {
 			e.printStackTrace();
 		}
     	System.out.println("El servidor Origin Server esta alojado en:"+IP+":"+puerto);
-        ServerTCPInteractivo objetoServer= new ServerTCPInteractivo(puerto);
+    	ServerTCPConcurrenteOrigin objetoServer= new ServerTCPConcurrenteOrigin(puerto);
         objetoServer.run();
         teclado.close();
     }   

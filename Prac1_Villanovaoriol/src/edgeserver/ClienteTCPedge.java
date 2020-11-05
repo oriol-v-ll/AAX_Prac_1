@@ -3,7 +3,6 @@ package edgeserver;
 import java.io.*;
 import java.net.*;
 
-import cliente.ClienteTCPUserToOrigin;
 
 public class ClienteTCPedge {
 
