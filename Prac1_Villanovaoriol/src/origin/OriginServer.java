@@ -1,9 +1,17 @@
+/**
+ * Origin server -> este servidor es el que tiene todo los archivos
+ */
 package origin;
 
 import java.util.Scanner;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-
+/**
+ * Origin server procesa la información tanto del cliente como del edgeserver y les da sus peticiones
+ * 
+ * @author oriol
+ *
+ */
 public class OriginServer {
     public static void main(String[] args) {
     	Scanner teclado = new Scanner(System.in);
