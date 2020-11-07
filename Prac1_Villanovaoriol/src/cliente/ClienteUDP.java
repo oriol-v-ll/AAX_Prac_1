@@ -47,7 +47,7 @@ public class ClienteUDP {
             System.exit(1);
         }
         // send user ubication.
-       
+        buf = Ubicacion.getBytes();
         DatagramPacket packet = new DatagramPacket(buf, buf.length, 
                 address, puerto);  
         try {
@@ -57,16 +57,14 @@ public class ClienteUDP {
             System.exit(1);
         }
      
-
+        buf = new byte[256];
+        packet = new DatagramPacket(buf, buf.length);
         try {
             socket.receive(packet);
         } catch (IOException e) {
             System.err.println("Error when receiving");
             System.exit(1);
         }
-   
-
-        packet = new DatagramPacket(buf, buf.length);
         String received = new String(packet.getData(), 0, packet.getLength());
         System.out.println("Edge server optimo: " + received);
         socket.close();

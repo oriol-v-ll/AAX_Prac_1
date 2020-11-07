@@ -111,7 +111,6 @@ public class ServerTCPThreadOrigin extends Thread {
 				}
 				if (outputLine.equals("NO")) {
 
-
 				}
 				if (outputLine.equals("Bye."))
 					break;
@@ -131,5 +130,5 @@ public class ServerTCPThreadOrigin extends Thread {
 			System.exit(1);
 		}
 	}
-	
+
 }

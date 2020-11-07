@@ -25,7 +25,6 @@ public class ServerTCPThread extends Thread {
 	public void run() {
 		PrintWriter out = null;
 		BufferedReader in = null;
-		// DataInputStream input;
 		BufferedInputStream bis;
 		BufferedOutputStream bos;
 
@@ -52,7 +51,6 @@ public class ServerTCPThread extends Thread {
 				outputLine = protocolo.processInput(inputLine);
 				out.println(outputLine);
 				if (outputLine.equals("SI")) {
-					// Implementación de sistema de descargas.
 					if (inputLine.equals("FastAndFurius")) {
 						filename = "EdgeServer/Fastandfurius.txt";
 						File localFile = new File(filename);

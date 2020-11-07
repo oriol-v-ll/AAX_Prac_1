@@ -1,5 +1,5 @@
 /**
- * 
+ * deprecated
  * SERVER TCP INTERACTIVO ORIGIN 
  * 
  * @author Oriol Villanova Llorens -> oriol.villanova@estudiants.urv.cat 
@@ -18,6 +18,11 @@ public class ServerTCPInteractivo {
 		this.puerto = puerto;
 	}
 
+	/**
+	 * Servidor TCP aleternativo por si queremos iniciar el servidor para hacer
+	 * peticiones sincronas.
+	 * 
+	 */
 	public void run() {
 		ServerSocket serverSocket = null;
 		BufferedInputStream bis;
@@ -82,7 +87,7 @@ public class ServerTCPInteractivo {
 						bos.close();
 						out.close();
 						in.close();
-						//break;
+						// break;
 					}
 					if (inputLine.equals("Juego de Tronos")) {
 						filename = "Origin/Juego de tronos.txt";
@@ -101,7 +106,7 @@ public class ServerTCPInteractivo {
 						bos.close();
 						out.close();
 						in.close();
-						//break;
+						// break;
 					}
 					if (inputLine.equals("Mr.Robot")) {
 						filename = "Origin/Mr.Robot.txt";
@@ -120,7 +125,7 @@ public class ServerTCPInteractivo {
 						bos.close();
 						out.close();
 						in.close();
-						//break;
+						// break;
 					}
 				}
 				if (outputLine.equals("Bye."))

@@ -1,3 +1,8 @@
+/**
+ * ClienteTCPedge
+ * 
+ * @author @author Oriol Villanova LLorens -> oriol.villanova@estudiants.urv.cat
+ */
 package edgeserver;
 
 import java.io.*;
@@ -15,7 +20,9 @@ public class ClienteTCPedge {
 		this.puerto = puerto;
 		this.archivo = archivo;
 	}
-
+	/**
+	 * Run, crea un cliente TCP para hacer la comunicacion entre el edge server y el origin server.
+	 */
 	public void run() {
 		Socket socket = null;
 		PrintWriter out = null;

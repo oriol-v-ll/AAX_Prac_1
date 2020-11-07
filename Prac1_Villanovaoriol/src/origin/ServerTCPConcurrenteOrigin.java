@@ -14,7 +14,10 @@ public class ServerTCPConcurrenteOrigin {
     public ServerTCPConcurrenteOrigin(int puerto) {
         this.puerto = puerto; 
     }
-    
+    /**
+     * Crea una instancia del servidor Origin y dependiendo de las peticiones 
+     * 
+     */
     @SuppressWarnings("resource")
 	public void run() {
         ServerSocket serverSocket = null;

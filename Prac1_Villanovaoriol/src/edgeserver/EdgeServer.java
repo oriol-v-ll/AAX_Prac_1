@@ -17,7 +17,7 @@ import java.util.Scanner;
  */
 public class EdgeServer {
 	    public static void main(String[] args) {
-	    	//Preguntar que servidor y en que localizacion queremos iniciarlo:
+	    	System.out.println("-********EDGESERVER********-\\n");
 	    	Scanner teclado = new Scanner(System.in);
 	    	int opcionUbicacion, puerto;
 	    	String ubicacion;

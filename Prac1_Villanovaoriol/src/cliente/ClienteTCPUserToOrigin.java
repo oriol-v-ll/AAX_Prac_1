@@ -13,7 +13,7 @@ public class ClienteTCPUserToOrigin {
 
 	private String IP = "";
 	private int puerto = 0;
-	String archivo = "";
+
 
 	/**
 	 * Constructor de la classe con los parametros de conexión.
@@ -22,16 +22,16 @@ public class ClienteTCPUserToOrigin {
 	 * @param puerto
 	 * @param archivo
 	 */
-	public ClienteTCPUserToOrigin(String IP, int puerto, String archivo) {
+	public ClienteTCPUserToOrigin(String IP, int puerto) {
 		this.IP = IP;
 		this.puerto = puerto;
-		this.archivo = archivo;
+		
 	}
 
 	/**
 	 * se ejecuta una conexión TCP con el origin server.
 	 */
-	public void run() {
+	public void run(String archivo) {
 		Socket socket = null;
 		PrintWriter out = null;
 		BufferedReader in = null;

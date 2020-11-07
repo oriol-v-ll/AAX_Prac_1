@@ -21,7 +21,11 @@ public class ProtocoloComunicacionEdge {
 
 	public ProtocoloComunicacionEdge() {
 	}
-
+	/**
+	 * Classe para procesar la información que proviene del cliente y darle una respuesta adiente.
+	 * @param theInput
+	 * @return theOutput: Respuesta que dará el servidor. 
+	 */
 	public String processInput(String theInput) {
 		String theOutput = null;
 

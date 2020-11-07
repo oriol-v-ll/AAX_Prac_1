@@ -111,9 +111,9 @@ public class ClienteTCPuser {
 							System.out.println("Server: " + fromServer);
 							int puertoOriginerver = Integer.parseInt(fromServer);
 							ClienteTCPUserToOrigin objetoCliente = new ClienteTCPUserToOrigin(ipOriginServer,
-									puertoOriginerver, archivo);
+									puertoOriginerver);
 
-							objetoCliente.run();
+							objetoCliente.run(archivo);
 							break;
 
 						}
