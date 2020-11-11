@@ -10,6 +10,9 @@ public class ServerTCPThread extends Thread {
 	private Socket socket = null;
 	private String iporigin = "";
 	private int puertoorigin = 0;
+	public static int FF =0;
+	public static int JT =0;
+	public static int MR =0;
 
 	public ServerTCPThread(Socket socket, String iporigin, int puertoorigin) {
 		this.socket = socket;
@@ -27,6 +30,7 @@ public class ServerTCPThread extends Thread {
 		BufferedReader in = null;
 		BufferedInputStream bis;
 		BufferedOutputStream bos;
+		
 
 		int ini;
 		byte[] byteArray;
@@ -37,6 +41,19 @@ public class ServerTCPThread extends Thread {
 		} catch (IOException e) {
 			System.err.println("Create streams failed.");
 			System.exit(1);
+		}
+		
+		if (FF==1) {
+			ClienteTCPedge objetoClienteTCP = new ClienteTCPedge(iporigin, puertoorigin, "FastAndFurius");
+			objetoClienteTCP.run();	
+		}
+		if (JT==1) {
+			ClienteTCPedge objetoClienteTCP = new ClienteTCPedge(iporigin, puertoorigin, "Juego de Tronos");
+			objetoClienteTCP.run();
+		}
+		if (MR==1) {
+			ClienteTCPedge objetoClienteTCP = new ClienteTCPedge(iporigin, puertoorigin, "Mr.Robot");
+			objetoClienteTCP.run();
 		}
 
 		ProtocoloComunicacionEdge protocolo = new ProtocoloComunicacionEdge();
@@ -110,8 +127,16 @@ public class ServerTCPThread extends Thread {
 					}
 				}
 				if (outputLine.equals("NO")) {
+					if (inputLine.equals("FastAndFurius"))
+						FF ++;
+					if (inputLine.equals("Juego de Tronos"))
+						JT++;	
+					if (inputLine.equals("Mr.Robot"));
+						MR++;
+					
+					/*
 					ClienteTCPedge objetoClienteTCP = new ClienteTCPedge(iporigin, puertoorigin, inputLine);
-					objetoClienteTCP.run();
+					objetoClienteTCP.run();*/
 
 				}
 				if (outputLine.equals("Bye."))
@@ -121,7 +146,7 @@ public class ServerTCPThread extends Thread {
 		} catch (IOException e) {
 			System.err.println("Read failed.");
 			System.exit(1);
-		}
+		} 
 
 		try {
 			out.close();

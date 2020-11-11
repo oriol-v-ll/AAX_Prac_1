@@ -19,7 +19,7 @@ import java.net.UnknownHostException;
 public class Hub {
 
 	public static void main(String[] args) {
-		System.out.println("-********HUB********-\\n");
+		System.out.println("-********HUB********-\n");
 		Scanner teclado = new Scanner(System.in);
 		int puerto;
 		System.out.println("Por cual puerto quieres iniciar el HUB?" + "\n");
