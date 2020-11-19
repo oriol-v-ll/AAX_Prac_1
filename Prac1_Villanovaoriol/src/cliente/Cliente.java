@@ -37,8 +37,8 @@ public class Cliente {
 		String edgeserver = "";
 		ClienteUDP objetoCliente = new ClienteUDP("127.0.0.1", 4444);
 		edgeserver = objetoCliente.run(ubicacion);
-		String ipedgeserver = edgeserver.substring(5, edgeserver.length());
-		String puertoedgeerver = edgeserver.substring(0, 4);
+		String ipedgeserver = edgeserver.substring(6, edgeserver.length());
+		String puertoedgeerver = edgeserver.substring(0, 5);
 		int puerto = Integer.parseInt(puertoedgeerver);
 		@SuppressWarnings("unused")
 		String conexionOrigin = null;

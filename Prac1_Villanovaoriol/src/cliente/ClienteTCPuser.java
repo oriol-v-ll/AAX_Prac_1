@@ -89,7 +89,7 @@ public class ClienteTCPuser {
 					file = "Descargas/descarga.txt";
 					bos = new BufferedOutputStream(new FileOutputStream(file));
 					ini = bis.read(receivedData);
-					bos.write(receivedData, 0, ini);
+					bos.write(receivedData);
 
 					bos.close();
 					dis.close();

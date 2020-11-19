@@ -38,9 +38,9 @@ public class ProtocoloComunicacionEdge {
 				theOutput = "SI";
 			}
 			if (theInput.equals("iporiginserver"))
-				theOutput = "127.0.0.1";
+				theOutput = "2.tcp.ngrok.io";
 			if (theInput.equals("puertooriginserver"))
-				theOutput = "9999";
+				theOutput = "14530";
 
 		} else {
 			System.out.println("El fichero no existe...");
